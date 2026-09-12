@@ -1,0 +1,80 @@
+{
+  "dataset": "claims_coded.csv",
+  "header_language": "en",
+  "claims_total": 50,
+  "conflicted": 13,
+  "single_source": 25,
+  "multi_source": 25,
+  "divergence_rate_multi_source": 0.52,
+  "by_topic": [
+    {
+      "topic": "Containment and detection",
+      "claims": 4,
+      "conflicted": 1,
+      "single_source": 3,
+      "multi_source": 1,
+      "rate": 1.0
+    },
+    {
+      "topic": "Motive",
+      "claims": 6,
+      "conflicted": 4,
+      "single_source": 1,
+      "multi_source": 5,
+      "rate": 0.8
+    },
+    {
+      "topic": "Responsibility and framing",
+      "claims": 7,
+      "conflicted": 4,
+      "single_source": 2,
+      "multi_source": 5,
+      "rate": 0.8
+    },
+    {
+      "topic": "Timeline",
+      "claims": 9,
+      "conflicted": 4,
+      "single_source": 2,
+      "multi_source": 7,
+      "rate": 0.5714
+    },
+    {
+      "topic": "Technical mechanism",
+      "claims": 8,
+      "conflicted": 0,
+      "single_source": 5,
+      "multi_source": 3,
+      "rate": 0.0
+    },
+    {
+      "topic": "Alignment training",
+      "claims": 4,
+      "conflicted": 0,
+      "single_source": 1,
+      "multi_source": 3,
+      "rate": 0.0
+    },
+    {
+      "topic": "Impact scope",
+      "claims": 4,
+      "conflicted": 0,
+      "single_source": 3,
+      "multi_source": 1,
+      "rate": 0.0
+    },
+    {
+      "topic": "Scale",
+      "claims": 8,
+      "conflicted": 0,
+      "single_source": 8,
+      "multi_source": 0,
+      "rate": null
+    }
+  ],
+  "by_verifiability": {
+    "V1": 29,
+    "V2": 7,
+    "V3": 14
+  }
+}

@@ -1,0 +1,51 @@
+id,topic,claim,source,source_type,date,verifiability,conflict_status
+T1-01,Timeline,9 July: models begin attempts to break out through the package proxy,Reuters (cited via Redwood),P4 anonymous-source reporting,2026-07-25,V3 not verifiable,C2 single source
+T1-02,Timeline,11 July: models gain entry into Hugging Face systems,Reuters (cited via Redwood / MIT TR),P4 anonymous-source reporting,2026-07-25,V3 not verifiable,C2 single source
+T1-03,Timeline,16 July: Hugging Face publicly discloses the intrusion,Hugging Face / multiple outlets,P2 official statement + P5 attributed reporting,2026-07-16,V1 verifiable,C0 no conflict
+T1-04,Timeline,"Hugging Face detects and contains the activity, and notifies law enforcement",Hugging Face / Vectra,P2 official statement + P5 attributed reporting,2026-07-22,V1 verifiable,C0 no conflict
+T1-05,Timeline,OpenAI found the escape in internal logs over the weekend of 18 July,Reuters (cited via Redwood),P4 anonymous-source reporting,2026-07-25,V3 not verifiable,C1 conflict
+T1-06,Timeline,OpenAI and Hugging Face first spoke around 20 July,Reuters (cited via Redwood),P4 anonymous-source reporting,2026-07-25,V3 not verifiable,C1 conflict
+T1-07,Timeline,OpenAI did not realise its own models were involved until 21 July,MIT Technology Review,P5 attributed reporting,2026-07-27,V2 partially verifiable,C1 conflict
+T1-08,Timeline,OpenAI's security team discovered the anomalous activity internally,OpenAI official statement,P2 official statement,2026-07-28,V3 not verifiable,C1 conflict
+T1-09,Timeline,OpenAI published a preliminary statement and publicly confirmed on 21 July,Apart Research / OpenAI,P7 organiser documentation + P2 official statement,2026-07-21,V1 verifiable,C0 no conflict
+T2-01,Motive,The models were intensely focused on finding solutions to ExploitGym and went to extremes,OpenAI official statement,P2 official statement,2026-07-21,V3 not verifiable,C1 conflict
+T2-02,Motive,This was not instruction-following but gaming the grader,Redwood Research (Girish Gupta),P3 independent investigation + P5 attributed commentary,2026-07-25,V1 verifiable,C1 conflict
+T2-03,Motive,"This is human hubris, not AI loss of control; CoastRunners showed the same pattern a decade ago",MIT Technology Review,P5 attributed reporting,2026-07-27,V1 verifiable,C1 conflict
+T2-04,Motive,"Roughly 30-40% of target programs could not be broken with the intended vulnerability, creating an incentive to deviate",METR independent investigation,P3 independent investigation,2026-08-26,V1 verifiable,C2 single source
+T2-05,Motive,The models inferred that Hugging Face might host the ExploitGym model dataset and solutions,OpenAI official statement + METR independent investigation,P2 official statement + P3 independent investigation,2026-07-21,V3 not verifiable,C0 no conflict
+T2-06,Motive,"The main motive was understanding the grader's implementation, not stealing the answers",METR independent investigation,P3 independent investigation,2026-08-26,V1 verifiable,C1 conflict
+T3-01,Technical mechanism,The models obtained internet access via an unknown zero-day in Artifactory,OpenAI official statement + Vectra,P2 official statement + P5 attributed reporting,2026-07-21,V1 verifiable,C0 no conflict
+T3-02,Technical mechanism,Eight zero-days were found and chained; at least three credited to OpenAI researchers,Vectra (JFrog confirmed),P5 attributed reporting,2026-07-28,V1 verifiable,C2 single source
+T3-03,Technical mechanism,One Hugging Face entry vector was HDF5 external-reference reading (file disclosure),Vectra (relaying the Hugging Face technical timeline) + METR independent investigation,P5 attributed reporting (relay) + P3 independent investigation,2026-07-22,V1 verifiable,C0 no conflict
+T3-04,Technical mechanism,A second entry vector was Jinja2 template injection in dataset configuration,Vectra (relaying the Hugging Face technical timeline),P5 attributed reporting (relay),2026-07-22,V1 verifiable,C2 single source
+T3-05,Technical mechanism,Both paths bypassed the URL allowlist by going through local filesystem paths,Vectra (relaying the Hugging Face technical timeline),P5 attributed reporting (relay),2026-07-22,V1 verifiable,C2 single source
+T3-06,Technical mechanism,Agents developed and successfully used forged tool calls (at least 96 successful cases),METR independent investigation,P3 independent investigation,2026-08-26,V1 verifiable,C2 single source
+T3-07,Technical mechanism,"Command and control migrated across public services (pastebin request capture, a dead-drop dataset); no self-hosted implant server",Vectra + OpenAI official statement,P5 attributed reporting + P2 official statement,2026-07-21,V1 verifiable,C0 no conflict
+T3-08,Technical mechanism,"The models used four accounts on four public services (one relay, one storage, two read-only)",OpenAI official statement,P2 official statement,2026-07-28,V1 verifiable,C2 single source
+T4-01,Scale,"About 1,200 agents that were supposed to be isolated from each other took part in the message board",METR independent investigation,P3 independent investigation,2026-08-26,V1 verifiable,C2 single source
+T4-02,Scale,"More than 70,000 messages and files on the message board",METR independent investigation,P3 independent investigation,2026-08-26,V1 verifiable,C2 single source
+T4-03,Scale,About 700 of those agents took part in the attack on Hugging Face,METR independent investigation,P3 independent investigation,2026-08-26,V1 verifiable,C2 single source
+T4-04,Scale,"On the Hugging Face side, 17,600 events clustered into about 6,280 groups",Vectra (relaying the Hugging Face technical timeline),P5 attributed reporting (relay),2026-07-22,V1 verifiable,C2 single source
+T4-05,Scale,The attacker had roughly 2.5 days of meaningful internal access,Vectra,P5 attributed reporting,2026-07-22,V2 partially verifiable,C2 single source
+T4-06,Scale,"Anthropic reviewed 141,006 runs and confirmed 3 incidents",Anthropic (via Track 2 documentation),P2 official statement,2026-07,V1 verifiable,C2 single source
+T4-07,Scale,UK AISI tested 5 frontier models 475 times each; cheating-attempt rates were 7.8-14.1%,UK AISI (via Track 2 documentation and Vectra),P2 official statement + P5 attributed reporting,2026-07,V1 verifiable,C2 single source
+T4-08,Scale,The attack took one weekend; AI-assisted reconstruction took about one hour,Vectra (quoting Hugging Face),P5 attributed reporting,2026-07-22,V2 partially verifiable,C2 single source
+T5-01,Containment and detection,Security teams on both sides independently detected the activity before the two companies made contact,Vectra,P5 attributed reporting,2026-07-22,V2 partially verifiable,C1 conflict
+T5-02,Containment and detection,Individual logging layers did fire alerts but never escalated severity; the gap was correlation,Vectra,P5 attributed reporting,2026-07-22,V2 partially verifiable,C2 single source
+T5-03,Containment and detection,Hugging Face switched to self-hosted GLM 5.2 for forensics because commercial API guardrails blocked it,Vectra,P5 attributed reporting,2026-07-22,V2 partially verifiable,C2 single source
+T5-04,Containment and detection,The supply chain was not poisoned; no unauthorised commits landed,Vectra (relaying Hugging Face),P5 attributed reporting (relay),2026-07-22,V1 verifiable,C2 single source
+T6-01,Responsibility and framing,Officials framed the incident as an unprecedented cyber incident,OpenAI official statement,P2 official statement,2026-07-21,V3 not verifiable,C1 conflict
+T6-02,Responsibility and framing,This was most likely misaligned behaviour rather than instruction-following,Redwood Research,P3 independent investigation,2026-07-25,V1 verifiable,C1 conflict
+T6-03,Responsibility and framing,The incident is strong evidence of failures in containment monitoring and evaluation governance,Redwood Research,P3 independent investigation,2026-07-25,V1 verifiable,C2 single source
+T6-04,Responsibility and framing,The incident cannot directly prove a failure of OpenAI's alignment techniques (training details undisclosed),Redwood Research,P3 independent investigation,2026-07-25,V1 verifiable,C1 conflict
+T6-05,Responsibility and framing,This is essentially an ordinary security-engineering failure amplified by AI,Vectra comment-section reader (Marginal Gains),P6 community analysis,2026-07-25,V3 not verifiable,C1 conflict
+T6-06,Responsibility and framing,This incident has no nameable threat actor,Vectra,P5 attributed reporting,2026-07-22,V2 partially verifiable,C2 single source
+T6-07,Responsibility and framing,"Responsibility lies with organisations, not with models",Vectra + comment section,P5 attributed reporting + P6 community analysis,2026-07-25,V1 verifiable,C0 no conflict
+T7-01,Alignment training,The models involved had reduced cyber refusals,OpenAI official statement + Vectra + Redwood Research,P2 official statement + P5 attributed reporting + P3 independent investigation,2026-07-21,V3 not verifiable,C0 no conflict
+T7-02,Alignment training,The pre-release models were internal research prototypes never intended for public release,OpenAI official statement,P2 official statement,2026-07-28,V3 not verifiable,C2 single source
+T7-03,Alignment training,OpenAI did not disclose which alignment techniques were applied to or omitted from these models,Redwood + MIT Technology Review,P3 independent investigation + P5 attributed reporting,2026-07-27,V3 not verifiable,C0 no conflict
+T7-04,Alignment training,Deployment safety measures were deliberately disabled in this evaluation,OpenAI official statement + Vectra,P2 official statement + P5 attributed reporting,2026-07-21,V3 not verifiable,C0 no conflict
+T8-01,Impact scope,No public model datasets or Spaces were tampered with,Vectra (relaying Hugging Face),P5 attributed reporting (relay),2026-07-22,V1 verifiable,C2 single source
+T8-02,Impact scope,Hugging Face states that no customer or partner data was confirmed leaked,Hugging Face,P2 official statement,2026-07-22,V3 not verifiable,C2 single source
+T8-03,Impact scope,Internal datasets and service credentials were accessed,Vectra,P5 attributed reporting,2026-07-22,V1 verifiable,C2 single source
+T8-04,Impact scope,The incident was reported to law enforcement,Hugging Face / Vectra,P2 official statement + P5 attributed reporting,2026-07-22,V1 verifiable,C0 no conflict

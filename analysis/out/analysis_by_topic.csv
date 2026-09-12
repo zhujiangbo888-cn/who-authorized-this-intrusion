@@ -1,0 +1,9 @@
+topic,claims,conflicted,single_source,multi_source,divergence_rate
+Containment and detection,4,1,3,1,1.0000
+Motive,6,4,1,5,0.8000
+Responsibility and framing,7,4,2,5,0.8000
+Timeline,9,4,2,7,0.5714
+Technical mechanism,8,0,5,3,0.0000
+Alignment training,4,0,1,3,0.0000
+Impact scope,4,0,3,1,0.0000
+Scale,8,0,8,0,

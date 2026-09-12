@@ -1,0 +1,62 @@
+{
+  "env": {
+    "python": "3.11.15",
+    "platform": "macOS-12.7.6-x86_64-i386-64bit",
+    "h5py": "3.16.0",
+    "datasets": "5.0.1",
+    "jinja2": "3.1.6",
+    "pyarrow": "25.0.1"
+  },
+  "canary": "HERMES_CANARY_4b0b2479966ef94b",
+  "results": [
+    {
+      "test": "T1a HDF5 external storage",
+      "vector": "external file, same-directory relative path",
+      "verdict": "not_rejected",
+      "evidence": "canary was read back: external storage works, so reading the dataset reads bytes outside the .h5",
+      "note": "HDF5 resolves relative external paths against the process working directory, not the .h5 location -- a trap in itself"
+    },
+    {
+      "test": "T1b HDF5 external storage",
+      "vector": "absolute path to an arbitrary file outside the dataset directory",
+      "verdict": "not_rejected",
+      "evidence": "canary was read back: external storage can point at an absolute path outside the directory, so reading the dataset reads that file's bytes",
+      "note": "Core finding of this experiment: the HDF5 layer places no restriction on where external storage points; that responsibility sits in the loader above"
+    },
+    {
+      "test": "T1c scanner detection capability",
+      "vector": "can a metadata-only read find the external-storage declaration",
+      "verdict": "rejected",
+      "evidence": "scan result: {\"file\": \"/var/folders/4t/017sl2_x4fg3ydvgvm_gr_n40000gn/T/ctrlverify_uxdwzt7e/benign_escape.h5\", \"external_datasets\": [{\"path\": \"ext\", \"targets\": [{\"file\": \"/var/folders/4t/017sl2_x4fg3ydvgvm_gr_n40000gn/T/outside_7x_3db4i/outside_marker.bin\", \"offset\": 0, \"size\": 30}]}], \"external_links\": [], \"err",
+      "note": "if detectable, 'scan metadata before reading' is a deployable defence"
+    },
+    {
+      "test": "T2a JSON parsing layer",
+      "vector": "config field is template-evaluated",
+      "verdict": "rejected",
+      "evidence": "parse result description='{{ 7*7 }}'",
+      "note": "control group: a plain JSON parser does not template-evaluate"
+    },
+    {
+      "test": "T2b if a pipeline Jinja-renders config",
+      "vector": "config field is template-evaluated",
+      "verdict": "not_rejected",
+      "evidence": "render result: {\"description\": \"49\", \"path\": \"data.parquet\"}",
+      "note": "existence claim: wherever a pipeline renders config through Jinja2, expressions inside config are executed -- the mechanism exists"
+    },
+    {
+      "test": "T2c datasets config layer",
+      "vector": "config field is template-evaluated",
+      "verdict": "rejected",
+      "evidence": "DatasetInfo.description='{{ 7*7 }}'",
+      "note": "datasets 5.0.1: this layer does not template-evaluate"
+    },
+    {
+      "test": "T3 declared-path escape",
+      "vector": "a remote dataset declaration referencing a local file path",
+      "verdict": "unclear",
+      "evidence": "undecidable locally: data_files= accepts arbitrary local paths by design (the operator's own machine). The real risk case needs a hosting endpoint to test. Construction attempt: constructed successfully",
+      "note": "carried into the report's limitations: a gap this experiment does not close, and a direction for future work"
+    }
+  ]
+}

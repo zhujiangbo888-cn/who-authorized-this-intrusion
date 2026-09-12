@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# experiment scratch: the run creates a temp dir, but just in case
+ctrlverify_*/
+outside_*/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,7 @@
+numpy>=1.24
+matplotlib>=3.7
+h5py>=3.9
+# only needed for the Jinja2 vector (T2b/T2c) of the control-verification experiment
+Jinja2>=3.1
+# only needed to reproduce the T2c layer check
+datasets>=2.16

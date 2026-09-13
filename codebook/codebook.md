@@ -7,11 +7,13 @@
 >
 > **Coded material.** The sources archived locally: official statements, one
 > independent third-party investigation, first-party forensic material, anonymous-source
-> reporting, attributed commentary and organiser documentation. Ten of these were read
-> directly from the document; one (the Hugging Face forensic timeline) could not be
-> retrieved from the machine this work was done on, and its content is represented only
-> as relayed by another source. Rows carried that way are marked in the `source_type`
-> field as a relay and are coded single-source.
+> reporting, attributed commentary and organiser documentation. All were read directly
+> from the document. The two Hugging Face primary documents (the incident disclosure and
+> the technical timeline) were retrievable at origin only after the first coding pass; the
+> 15 rows first coded through Vectra's relay or commentary were then re-verified against
+> the primary text, and their `source` and `source_type` fields were upgraded from relay
+> to primary. Thirteen were confirmed as coded, two were adjusted, and no conflict code
+> changed.
 >
 > **Coder.** Jiangbo Zhu · 12 September 2026.
 
@@ -107,9 +109,9 @@ Exclusion criteria:
 5. **A `C0` requires two or more *independent* sources.** A source that merely relays
    another — a commentator quoting a vendor's blog, a party's own statement reproduced in
    a news article, an outlet re-reporting an investigation — counts **once**. Where a
-   primary document could not be read directly, the claim is coded at the level of the
-   source that could be read, and marked as a relay. This rule is what separates `C0`
-   from `C2`, and it is applied row by row in `data/claims_coded.csv`.
+   primary document could not be read at the time of coding, the claim was coded at the
+   level of the relay and re-verified once the primary was retrieved. This rule is what
+   separates `C0` from `C2`, and it is applied row by row in `data/claims_coded.csv`.
 6. **Claims are coded against the version of a document that was archived.** See §4.4.
 
 ---
@@ -129,10 +131,12 @@ Exclusion criteria:
 4. **Conflict status depends on the revision read.** Documents are updated in place —
    the OpenAI statement has at least four revisions (21 Jul, 28 Jul, 29 Jul, 26 Aug).
    We coded the locally archived revisions.
-5. **Material that could not be archived is not included, and one key document could not
-   be archived.** The Hugging Face technical timeline could not be fetched directly
-   because of a network-level block. Its content reached us through a relay, so rows
-   carried that way are coded `P5 ... (relay)` and count as a single source.
+5. **Material had to be archived, and one key document was archived late.** The Hugging
+   Face technical timeline could not be fetched directly at first because of a
+   network-level block, so rows resting on it were initially coded `P5 ... (relay)` and
+   counted as a single source. Both Hugging Face primary documents were later retrieved at
+   origin (through a local proxy) and every relay-carried row was re-verified. The upgrade
+   changed the verifiability mix but no conflict code, hence no rate.
 6. **Several denominators are very small.** The divergence rates for individual topics
    rest on 1, 3, 5 or 7 multi-source claims, and one topic (Scale) has no multi-source
    claims at all, where the rate is undefined rather than zero. Read the ordering, not

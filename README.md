@@ -21,6 +21,7 @@ needed, no private data is included, and the whole pipeline finishes in a few se
 | `analysis/make_figure1.py` | Renders Figure 1 of the report. |
 | `analysis/sensitivity.py` | Robustness check: recomputes the same dataset under three coding policies (see *Robustness* below). |
 | `analysis/out/` | Output of the analysis (CSV + JSON), committed so you can diff against your own run. |
+| `data/primary_read.md` | The two Hugging Face primary documents, with the URL, retrieval time and SHA-256 of the copy each relay-carried claim was re-verified against. |
 | `experiment/verify_bypass_paths.py` | The format-level demonstration, **and** the metadata-only HDF5 scanner as a standalone tool. |
 | `experiment/results_final.json` | Raw output of the experiment, including the library versions it ran under. |
 | `experiment/SAFETY.md` | Dual-use boundary statement: what this experiment deliberately does *not* do. |
@@ -152,15 +153,17 @@ These are stated in the report and repeated here so nobody has to dig them out:
 
 1. **No inter-coder reliability.** Coding was done by a single coder. A second coder
    would move these ratios. This is the largest limitation of the method.
-2. **The sample is not random.** It is the sources that were available to us — ten
-   read directly plus one reached only through a relay — not an exhaustive set;
-   selection may be biased.
+2. **The sample is not random.** It is the sources that were available to us — eleven
+   documents, two of them Hugging Face primary documents retrieved at origin after the
+   first coding pass — not an exhaustive set; selection may be biased.
 3. **Conflicted ≠ wrong.** `C1` means sources contradict each other. It does not mean
    any source is inaccurate, and we do not adjudicate.
 4. **Version and access dependence.** Official statements exist in several revisions; we
-   coded the locally archived versions. One key document — the Hugging Face technical
-   timeline — could not be retrieved at all, so claims carried from it are coded as a
-   relay and treated as single-source.
+   coded the locally archived versions. The two Hugging Face primary documents became
+   retrievable at origin only after the first coding pass, so part of the technical record
+   was first coded through relays. All 15 relay-carried rows were then re-verified against
+   the primary text: 13 confirmed as coded, 2 adjusted, and **no conflict code changed**,
+   so no rate moved. The re-verification is Appendix E of the report.
 5. **Divergence is not reliability.** Two sources can disagree without either being
    wrong, and agree without either being right. What is measured is recorded
    disagreement inside a non-random sample. If that disagreement is driven mainly by
@@ -171,10 +174,10 @@ These are stated in the report and repeated here so nobody has to dig them out:
 7. **Claims, not disputes.** One disagreement can produce several coded claims, and one
    fact can appear under two topics. A `claim_group_id` is the next version of this
    table.
-6. **Inherited limitations.** METR states its data came from OpenAI under a negotiated
+7. **Inherited limitations.** METR states its data came from OpenAI under a negotiated
    redaction agreement and that much of the analysis was delegated to AI agents, which
    METR itself cannot fully verify. Downstream conclusions inherit this.
-7. **The experiment tests the library layer, not the platform layer.** There may be
+8. **The experiment tests the library layer, not the platform layer.** There may be
    defensive layers in between that we did not model.
 9. **Experiment n = 1 per vector.** This is a format-level demonstration, not
    statistical measurement, and it tests library behaviour only — not any deployed

@@ -112,7 +112,7 @@ def main(csv_path: str, out: str):
     ax.set_axisbelow(True)
 
     fig.text(0.5, -0.02,
-             f"n = {total} coded factual claims from 10 sources read directly; "
+             f"n = {total} coded factual claims from 11 sources, all read at origin; "
              f"{total_sg} of them ({total_sg / total * 100:.0f}%) rest on a single source "
              f"and are excluded from every denominator.",
              ha="center", fontsize=8.6, color="#6b7686")
